@@ -2176,3 +2176,31 @@ boost_library(
         ":utility",
     ],
 )
+
+boost_library(
+    name = "python",
+    srcs = glob(
+        [
+            "libs/python/src/object/*.cpp",
+            "libs/python/src/converter/*.cpp",
+        ],
+    ),
+    visibility = ["//visibility:public"],
+    deps = [
+        "@local_config_python//:python_headers",
+    ],
+)
+
+boost_library(
+    name = "numpy",
+    srcs = glob(
+        [
+            "libs/python/src/numpy/*.cpp",
+        ],
+    ),
+    visibility = ["//visibility:public"],
+    deps = [
+        ":python",
+        "@local_config_python//:numpy_headers",
+    ],
+)
